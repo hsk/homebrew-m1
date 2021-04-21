@@ -16,7 +16,7 @@ class Gendev040 < Formula
 
   bottle do
     root_url "https://github.com/hsk/brew-bottle/raw/main"
-    sha256 cellar: :any, arm64_big_sur: "ca6ffc01cef72bde1976baed869c463348c869a680aed881817cea9a0ec2bc99"
+    sha256 cellar: :any, arm64_big_sur: "98268987187df7a7b519104fdbdccc43c9249758230ec78681c509136f626cd1"
   end
 
   depends_on "make"
