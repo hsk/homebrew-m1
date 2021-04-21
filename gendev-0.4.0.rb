@@ -7,7 +7,7 @@ class Gendev040 < Formula
   depends_on "openjdk"
   if Hardware::CPU.arm?
     url "https://github.com/hsk/gendev-0.4.0/archive/refs/tags/0.4.0f.tar.gz"
-    #sha256 "8e52298b65d1d25fba21f99b18ae6b513cdde9f41c5dce62fb9f4fb45f2c80e2"
+    sha256 "6ab8b37ca26fdee1de6f222c3f55b61862237eb8aaf0faac97840d21e6853411"
     version "0.4.0"
   else
     system "false"
