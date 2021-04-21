@@ -15,7 +15,7 @@ class Gendev040 < Formula
   license "GPL-3.0-or-later" => { with: "GCC-exception-3.1" }
 
   bottle do
-    root_url "https://github.com/hsk/brew-bottle/raw/main/gendev-0.4.0--0.4.0.arm64_big_sur.bottle.tar.gz"
+    root_url "https://github.com/hsk/brew-bottle/raw/main"
     sha256 cellar: :any, arm64_big_sur: "98268987187df7a7b519104fdbdccc43c9249758230ec78681c509136f626cd1"
   end
 
