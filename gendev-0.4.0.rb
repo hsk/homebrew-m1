@@ -6,8 +6,8 @@ class Gendev040 < Formula
   homepage ""
   depends_on "openjdk"
   if Hardware::CPU.arm?
-    url "https://github.com/hsk/gendev-0.4.0/archive/refs/tags/0.4.0f.tar.gz"
-    sha256 "6ab8b37ca26fdee1de6f222c3f55b61862237eb8aaf0faac97840d21e6853411"
+    url "https://github.com/hsk/gendev-0.4.0/archive/refs/tags/0.4.0n.tar.gz"
+    sha256 "67db6ef85dcd699ab029b0ffeaf3d10eaa54bb375e6f4c68ca73af8f08255818"
     version "0.4.0"
   else
     system "false"
@@ -25,8 +25,8 @@ class Gendev040 < Formula
   def install
 
     system "echo #{prefix} #{lib}"
-    system "GENDEV=#{prefix} make -j1"
-    system "GENDEV=#{prefix} make -j1 install"
+    system "GENDEV=#{prefix} make"
+    system "GENDEV=#{prefix} make install"
   end
 
   def caveats
