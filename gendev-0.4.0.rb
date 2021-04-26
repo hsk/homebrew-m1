@@ -1,13 +1,15 @@
 # Documentation: https://docs.brew.sh/Formula-Cookbook
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
+require 'benchmark'
+
 class Gendev040 < Formula
   desc ""
   homepage ""
   depends_on "openjdk"
   if Hardware::CPU.arm?
-    url "https://github.com/hsk/gendev-0.4.0/archive/refs/tags/0.4.0n.tar.gz"
-    sha256 "67db6ef85dcd699ab029b0ffeaf3d10eaa54bb375e6f4c68ca73af8f08255818"
+    url "https://github.com/hsk/gendev-0.4.0/archive/refs/tags/0.4.0o.tar.gz"
+    sha256 "4eb42fb4a8002509c1e5ee4778b8f5f73a1c86b11e2e880001c6f7fa7cbb53c8"
     version "0.4.0"
   else
     system "false"
@@ -21,12 +23,24 @@ class Gendev040 < Formula
 
   depends_on "make"
   depends_on "wget"
- 
+  def sys p
+    puts Benchmark.measure { system p }
+  end
   def install
 
-    system "echo #{prefix} #{lib}"
-    system "GENDEV=#{prefix} make"
-    system "GENDEV=#{prefix} make install"
+    print "#{prefix} #{lib}\n"
+
+    #sys "GENDEV=#{prefix} make toolchain_build"
+    sys "GENDEV=#{prefix} cd toolchain && make setup"
+    sys "GENDEV=#{prefix} cd toolchain && make build-binutils"
+    sys "GENDEV=#{prefix} cd toolchain && make build-gcc-1"
+    sys "GENDEV=#{prefix} cd toolchain && make build-newlib"
+    sys "GENDEV=#{prefix} cd toolchain && make build-gcc-2"
+    sys "GENDEV=#{prefix} cd toolchain && make build-ldscripts"
+
+    sys "GENDEV=#{prefix} make tools_build"
+    sys "GENDEV=#{prefix} make sgdk_build"
+    sys "GENDEV=#{prefix} make install"
   end
 
   def caveats
