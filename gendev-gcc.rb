@@ -1,20 +1,19 @@
 require 'benchmark'
 
-class Gendev040 < Formula
+class GendevGcc < Formula
   desc ""
   homepage ""
   depends_on "openjdk"
   if Hardware::CPU.arm?
-    url "https://github.com/hsk/gendev-0.4.0/archive/refs/tags/0.4.0p.tar.gz"
+    url "https://github.com/hsk/m1-gendev-gcc/archive/refs/tags/10.2.1.tar.gz"
+    sha256 "7065e758947df675d6623e078f109fe7936c0a2aa65798868f239d9986402531"
   else
     system "false"
   end
-
   bottle do
     root_url "https://github.com/hsk/brew-bottle/raw/main"
-    sha256 cellar: :any, arm64_big_sur: "ca6ffc01cef72bde1976baed869c463348c869a680aed881817cea9a0ec2bc99"
+    sha256 cellar: :any, arm64_big_sur: "fa6b6c9c36d576916511ed0ea56a83f539ba5dac9c1486985106eb72cb8b1d8b"
   end
-
   depends_on "make"
   depends_on "wget"
   def sys p
@@ -31,9 +30,6 @@ class Gendev040 < Formula
     sys "GENDEV=#{prefix} cd toolchain && make build-newlib"
     sys "GENDEV=#{prefix} cd toolchain && make build-gcc-2"
     sys "GENDEV=#{prefix} cd toolchain && make build-ldscripts"
-
-    sys "GENDEV=#{prefix} make tools_build"
-    sys "GENDEV=#{prefix} make sgdk_build"
     sys "GENDEV=#{prefix} make install"
   end
 
